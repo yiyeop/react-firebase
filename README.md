@@ -79,7 +79,7 @@ ReactDOM.render(
 ### Usage
 ```js
 // HOC ~
-export default withFirebase(AdminStore);
+export default withFirebase(StoreContainer);
 // 사용법 끝
 ```
 
