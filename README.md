@@ -73,3 +73,33 @@ ReactDOM.render(
   document.getElementById("root")
 );
 ```
+### 적용은 끝났
+
+### Usage
+```js
+// HOC ~
+export default withFirebase(AdminStore);
+// 사용법 끝
+```
+
+### example
+```
+// 파이어스토어에서 데이터 가져오는 
+loadData = () => {
+    let storeData = [];
+    this.props.firebase.db
+      .collection("stores")
+      .orderBy("name")
+      .get()
+      .then(snapshot => {
+        snapshot.forEach(doc => {
+          storeData.push({ ...doc.data(), id: doc.id });
+        });
+        this.setState({
+          data: storeData,
+          allData: storeData
+        });
+      })
+      .catch(err => console.log(err));
+  };
+```
