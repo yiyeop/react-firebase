@@ -1,5 +1,6 @@
 # react-firebase
 
+### 리액트에서 firebase 사용하기 위해 정리해놓은 겁니다.
 
 ### renderProps 패턴으로 context 제공하는 파일 하나 만든다.
 ```js
@@ -83,8 +84,8 @@ export default withFirebase(AdminStore);
 ```
 
 ### example
-```
-// 파이어스토어에서 데이터 가져오는 
+```js
+// 파이어스토어에서 데이터 가져오는 샘플
 loadData = () => {
     let storeData = [];
     this.props.firebase.db
