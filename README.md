@@ -86,7 +86,7 @@ export default withFirebase(AdminStore);
 ### example
 ```js
 // 파이어스토어에서 데이터 가져오는 샘플
-loadData = () => {
+const loadData = () => {
     let storeData = [];
     this.props.firebase.db
       .collection("stores")
