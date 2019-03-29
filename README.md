@@ -1,8 +1,8 @@
 # react-firebase
 
-### 리액트에서 firebase 사용하기 위해 정리해놓은 겁니다.
+#### 리액트에서 firebase 사용하기 위해 정리해놓은 겁니다.
 
-### renderProps 패턴으로 context 제공하는 파일 하나 만든다.
+#### renderProps 패턴으로 context 제공하는 파일 하나 만든다.
 ```js
 import React from 'react';
 
@@ -17,7 +17,7 @@ export const withFirebase = Component => props => (
 export default FirebaseContext;
 ```
 
-### src 경로에 .env에 개인 정보 카피 해놓자
+#### src 경로에 .env에 개인 정보 카피 해놓자
 ```js
 import app from 'firebase/app';
 import 'firebase/firestore';
@@ -47,7 +47,7 @@ class Firebase {
 export default Firebase;
 ```
 
-### 합쳐서 export용
+#### 합쳐서 export용
 ```js
 import FirebaseContext, { withFirebase } from './context';
 import Firebase from './firebase';
@@ -58,7 +58,7 @@ export { FirebaseContext, withFirebase };
 
 ```
 
-### 자이제 index.js 파일에 넣자
+#### 자이제 index.js 파일에 넣자
 #### 파이어베이스 인스턴스는 하나만 잇어야돼서 저럼..
 ```js
 import React from "react";
@@ -74,16 +74,16 @@ ReactDOM.render(
   document.getElementById("root")
 );
 ```
-### 적용은 끝났
+#### 적용은 끝났
 
-### Usage
+#### Usage
 ```js
 // HOC ~
 export default withFirebase(StoreContainer);
 // 사용법 끝
 ```
 
-### example
+#### example
 ```js
 // 파이어스토어에서 데이터 가져오는 샘플
 const loadData = () => {
