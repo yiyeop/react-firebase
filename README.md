@@ -17,7 +17,7 @@ export default FirebaseContext;
 ```
 
 ### src 경로에 .env에 개인 정보 카피 해놓자
-```
+```js
 import app from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
@@ -44,4 +44,32 @@ class Firebase {
 }
 
 export default Firebase;
+```
+
+### 합쳐서 export용
+```js
+import FirebaseContext, { withFirebase } from './context';
+import Firebase from './firebase';
+
+export default Firebase;
+
+export { FirebaseContext, withFirebase };
+
+```
+
+### 자이제 index.js 파일에 넣자
+#### 파이어베이스 인스턴스는 하나만 잇어야돼서 저럼..
+```js
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import App from "./App";
+import Firebase, { FirebaseContext } from "./firebase";
+
+ReactDOM.render(
+  <FirebaseContext.Provider value={new Firebase()}>
+    <App />
+  </FirebaseContext.Provider>,
+  document.getElementById("root")
+);
 ```
