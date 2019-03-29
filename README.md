@@ -2,7 +2,7 @@
 
 
 ### renderProps 패턴으로 context 제공하는 파일 하나 만든다.
-```
+```js
 import React from 'react';
 
 const FirebaseContext = React.createContext(null);
