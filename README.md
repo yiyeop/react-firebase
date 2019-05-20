@@ -95,18 +95,16 @@ export default withFirebase(StoreContainer);
 ```js
 // 파이어스토어에서 데이터 가져오는 샘플
 const loadData = () => {
-    let storeData = [];
+    let data = [];
     this.props.firebase.db
-      .collection("stores")
-      .orderBy("name")
+      .collection("users")
       .get()
-      .then(snapshot => {
-        snapshot.forEach(doc => {
-          storeData.push({ ...doc.data(), id: doc.id });
+      .then(snapshots => {
+        snapshots.forEach(doc => {
+          data.push({ ...doc.data(), id: doc.id });
         });
         this.setState({
-          data: storeData,
-          allData: storeData
+          data
         });
       })
       .catch(err => console.log(err));
