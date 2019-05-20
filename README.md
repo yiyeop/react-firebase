@@ -7,23 +7,7 @@
 yarn add firebase
 ```
 
-#### Context 제공하는 파일 하나 만든다.
-```js
-// context.js
-import React from 'react';
-
-const FirebaseContext = React.createContext(null);
-
-export const withFirebase = Component => props => (
-  <FirebaseContext.Consumer>
-    {firebase => <Component {...props} firebase={firebase} />}
-  </FirebaseContext.Consumer>
-);
-
-export default FirebaseContext;
-```
-
-#### src 경로에 .env에 개인 정보 카피 해놓자
+#### src 경로에 .env에 config 정보 카피 해놓자
 ```js
 // firebase.js
 import app from 'firebase/app';
@@ -52,6 +36,22 @@ class Firebase {
 }
 
 export default Firebase;
+```
+
+#### Context 제공하는 파일 하나 만든다.
+```js
+// context.js
+import React from 'react';
+
+const FirebaseContext = React.createContext(null);
+
+export const withFirebase = Component => props => (
+  <FirebaseContext.Consumer>
+    {firebase => <Component {...props} firebase={firebase} />}
+  </FirebaseContext.Consumer>
+);
+
+export default FirebaseContext;
 ```
 
 #### 합쳐서 export용
