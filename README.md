@@ -88,7 +88,11 @@ ReactDOM.render(
 ```js
 // HOC ~
 export default withFirebase(StoreContainer);
-// 사용법 끝
+
+// React Hooks 로 사용 시
+// 함수형 컴포넌트 안에 useContext로 
+const firebase = useContext(FirebaseContext);
+
 ```
 
 #### example
