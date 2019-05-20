@@ -2,8 +2,14 @@
 
 #### 리액트에서 firebase 사용하기 위해 정리해놓은 겁니다.
 
+#### sdk 설치
+```
+yarn add firebase
+```
+
 #### Context 제공하는 파일 하나 만든다.
 ```js
+// context.js
 import React from 'react';
 
 const FirebaseContext = React.createContext(null);
@@ -19,6 +25,7 @@ export default FirebaseContext;
 
 #### src 경로에 .env에 개인 정보 카피 해놓자
 ```js
+// firebase.js
 import app from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
@@ -49,6 +56,7 @@ export default Firebase;
 
 #### 합쳐서 export용
 ```js
+// index.js
 import FirebaseContext, { withFirebase } from './context';
 import Firebase from './firebase';
 
