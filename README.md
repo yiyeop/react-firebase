@@ -1,10 +1,20 @@
 # react-firebase
 
-#### 리액트에서 firebase 사용하기 위해 정리해놓은 겁니다.
+#### React 에서 firebase 사용하기 위해 정리해놓은 겁니다.
 
-#### sdk 설치
+#### SDK 설치
 ```
 yarn add firebase
+```
+
+#### Hook 업데이트 (useContext) 사용하기
+```
+import React, { useContext } from "react";
+// ...
+const { auth, db, messaging } = useContext(FirebaseContext);
+
+// 기존과 같이 사용
+// db.collection('somethings').get()...
 ```
 
 #### src 경로에 .env에 config 정보 카피 해놓자
@@ -27,7 +37,6 @@ const config = {
 class Firebase {
   constructor() {
     app.initializeApp(config);
-
     this.storage = app.storage();
     this.auth = app.auth();
     this.db = app.firestore();
