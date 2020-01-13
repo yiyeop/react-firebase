@@ -141,9 +141,7 @@ const loadData = () => {
           .collection(collection)
           .doc(docId)
           .get()
-          .then(doc => {
-            return { ...doc.data(), id: doc.id };
-          });
+          .then(doc => ({ ...doc.data(), id: doc.id }));
 
       const loadDatas = _ =>
         db
