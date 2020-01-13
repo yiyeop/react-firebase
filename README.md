@@ -132,8 +132,8 @@ const loadData = () => {
     const [collection, setCollection] = useState(initialCollection);
     const [isLoading, setIsLoading] = useState(false);
     const [isError, setIsError] = useState(false);
-    const [reload, setReload] = useState(false);
-    const docRef = docId && db.collection(collection).doc(docId);
+    const [reload, setReload] = useState(false); // reload 토글 될 때 마다 useEffect 호출
+    const [docRef] = useState(docId && db.collection(collection).doc(docId));
 
     useEffect(() => {
       const loadOneData = docId =>
@@ -160,7 +160,7 @@ const loadData = () => {
       const loadWhereDatas = _ =>
         db
           .collection(collection)
-          .where(...where)
+          .where(...where) // [["active"], ["=="], ["true"]] firestore docs 참조
           .get()
           .then(snapshots => {
             let result = [];
