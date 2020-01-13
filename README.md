@@ -123,3 +123,75 @@ const loadData = () => {
       .catch(err => console.log(err));
   };
 ```
+
+### Hooks useFirebase
+```js
+  export const useFirebase = (initialCollection, initialData, docId, where) => {
+    const [data, setData] = useState(initialData);
+    const { db } = useContext(FirebaseContext);
+    const [collection, setCollection] = useState(initialCollection);
+    const [isLoading, setIsLoading] = useState(false);
+    const [isError, setIsError] = useState(false);
+    const [reload, setReload] = useState(false);
+    const docRef = docId && db.collection(collection).doc(docId);
+
+    useEffect(() => {
+      const loadOneData = docId =>
+        db
+          .collection(collection)
+          .doc(docId)
+          .get()
+          .then(doc => {
+            return { ...doc.data(), id: doc.id };
+          });
+
+      const loadDatas = _ =>
+        db
+          .collection(collection)
+          .get()
+          .then(snapshots => {
+            let result = [];
+            snapshots.forEach(doc => {
+              result.push({ ...doc.data(), id: doc.id });
+            });
+            return result;
+          });
+
+      const loadWhereDatas = _ =>
+        db
+          .collection(collection)
+          .where(...where)
+          .get()
+          .then(snapshots => {
+            let result = [];
+            snapshots.forEach(doc => {
+              result.push({ ...doc.data(), id: doc.id });
+            });
+            return result;
+          });
+
+      const fetchData = async _ => {
+        setIsError(false);
+        setIsLoading(true);
+        try {
+          const result = docId
+            ? await loadOneData(docId)
+            : where
+            ? await loadWhereDatas()
+            : await loadDatas();
+          setData(result);
+        } catch (error) {
+          setIsError(true);
+        }
+        setIsLoading(false);
+      };
+
+      fetchData();
+    }, [collection, docId, db, where, reload]);
+
+    return [
+      { data, isLoading, isError, db, docRef, reload: () => setReload(reload => !reload) },
+      setCollection
+    ];
+};
+```
